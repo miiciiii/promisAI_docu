@@ -1,4 +1,5 @@
 # Evaluation of Pre-trained NLP Models for Automated Title Generation
+---
 
 ## [Introduction]
 
@@ -23,26 +24,27 @@ To evaluate the models' capabilities, a consistent experimental setup was establ
 
 ### Tested Models
 
-| # | Model Name                                                | Architecture | Source       | Generated Title                                                                                                                   |
-|---|-----------------------------------------------------------|--------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| 1 | `fabiochiu/t5-base-medium-title-generation`               | T5           | Hugging Face | *The Impact of Artificial Intelligence in Higher Education*                                                                       |
-| 2 | `deep-learning-analytics/automatic-title-generation`      | T5           | Hugging Face | *AI-Powered Teaching and Learning: A Mixed-Method Survey*                                                                         |
-| 3 | `UBC-NLP/AraT5-base-title-generation`                     | AraT5        | Hugging Face | *AI articolarticolية تسهم في تحسين أداء التعليم والتعليم*                                                                             |
-| 4 | `vngrs-ai/VBART-XLarge-Title-Generation-from-News`        | BART         | Hugging Face | *AI-Powered Learning Tools*                                                                                                       |
-| 5 | `google/pegasus-large`                                    | PEGASUS      | Google       | *Using a mixed-methods approach involving surveys, interviews, and classroom observations across five institutions*               |
-| 6 | `t5-base`                                                 | T5           | Hugging Face | *This study examines the integration of AI-powered tools in university-level teaching and learning*                               |
-| 7 | `google/flan-t5-base`                                     | FLAN-T5      | Google       | *Artificial Intelligence in Higher Education: Benefits and Challenges*                                                            |
-| 8 | `EleutherAI/gpt-neo-1.3B`                                 | GPT-Neo      | EleutherAI   | *In recent years, the rapid advancement of artificial intelligence (AI)*                                                          |
-| 9 | `tuner007/pegasus_paraphrase`                             | PEGASUS      | Hugging Face | *The rapid advancement of artificial intelligence has changed the landscape of higher education.*                                 |
+| #  | Model Name                                                | Architecture | Source       | Generated Title                                                                                                                   |
+|----|-----------------------------------------------------------|--------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 1  | `deepseek-ai/DeepSeek-V3-0324`                            | DeepSeek     | Hugging Face | *AI in Higher Education: Transforming Teaching, Learning, and Institutional Challenges*                                           |
+| 2  | `fabiochiu/t5-base-medium-title-generation`               | T5           | Hugging Face | *The Impact of Artificial Intelligence in Higher Education*                                                                       |
+| 3  | `deep-learning-analytics/automatic-title-generation`      | T5           | Hugging Face | *AI-Powered Teaching and Learning: A Mixed-Method Survey*                                                                         |
+| 4  | `UBC-NLP/AraT5-base-title-generation`                     | AraT5        | Hugging Face | *AI articolarticolية تسهم في تحسين أداء التعليم والتعليم*                                                                             |
+| 5  | `vngrs-ai/VBART-XLarge-Title-Generation-from-News`        | BART         | Hugging Face | *AI-Powered Learning Tools*                                                                                                       |
+| 6  | `google/pegasus-large`                                    | PEGASUS      | Google       | *Using a mixed-methods approach involving surveys, interviews, and classroom observations across five institutions*               |
+| 7  | `t5-base`                                                 | T5           | Hugging Face | *This study examines the integration of AI-powered tools in university-level teaching and learning*                               |
+| 8  | `google/flan-t5-base`                                     | FLAN-T5      | Google       | *Artificial Intelligence in Higher Education: Benefits and Challenges*                                                            |
+| 9  | `EleutherAI/gpt-neo-1.3B`                                 | GPT-Neo      | EleutherAI   | *In recent years, the rapid advancement of artificial intelligence (AI)*                                                          |
+| 10 | `tuner007/pegasus_paraphrase`                             | PEGASUS      | Hugging Face | *The rapid advancement of artificial intelligence has changed the landscape of higher education.*                                 |
 
 ## [Key Findings]
 
-After testing nine pre-trained models on a consistent academic abstract prompt, the following observations were made:
+After testing ten pre-trained models on a consistent academic abstract prompt, the following observations were made:
 
 - **Top-Performing Models**:
-  - **Model 7** (`google/flan-t5-base`)
-  - **Model 2** (`deep-learning-analytics/automatic-title-generation`)
-  - **Model 1** (`fabiochiu/t5-base-medium-title-generation`)
+  - **Model 1** ([`deepseek-ai/DeepSeek-V3-0324`](https://github.com/deepseek-ai/DeepSeek-V3))
+  - **Model 8** ([`google/flan-t5-base`](https://huggingface.co/google/flan-t5-base))
+  - **Model 3** ([`deep-learning-analytics/automatic-title-generation`](https://huggingface.co/deep-learning-analytics/automatic-title-generation))
 
   These models consistently produced titles that were:
   - Semantically aligned with the abstract
@@ -50,15 +52,15 @@ After testing nine pre-trained models on a consistent academic abstract prompt, 
   - Concise while retaining key information
 
 - **Highlights**:
-  - **Model 7**: *Artificial Intelligence in Higher Education: Benefits and Challenges* — well-balanced and informative
-  - **Model 2**: *AI-Powered Teaching and Learning: A Mixed-Method Survey* — clear research focus
-  - **Model 1**: *The Impact of Artificial Intelligence in Higher Education* — simple yet relevant
+  - **Model 1**: *AI in Higher Education: Transforming Teaching, Learning, and Institutional Challenges* — comprehensive and academically styled
+  - **Model 8**: *Artificial Intelligence in Higher Education: Benefits and Challenges* — well-balanced and informative
+  - **Model 3**: *AI-Powered Teaching and Learning: A Mixed-Method Survey* — clear research focus
 
 - **Other Observations**:
-  - Some models (e.g., Models 5, 6, 8) generated outputs that were extractive or lacked brevity and structure.
-  - **Model 3**, designed for Arabic, produced a region-specific output, making it unsuitable for English-based evaluation.
+  - Some models (e.g., Models 6, 7, 9) generated outputs that were extractive or lacked brevity and structure.
+  - **Model 4**, designed for Arabic, produced a region-specific output, making it unsuitable for English-based evaluation.
 
-These findings suggest that instruction-tuned and task-specialized models (e.g., FLAN-T5 and T5 checkpoints) are most effective for academic title generation in English.
+These findings suggest that instruction-tuned and task-specialized models (e.g., FLAN-T5 and DeepSeek) are most effective for academic title generation in English.
 
 ## [Challenges]
 
@@ -81,11 +83,8 @@ During the evaluation, the following challenges were encountered:
 
 ## [Conclusions]
 
-This evaluation assessed nine pre-trained NLP models for academic title generation from abstracts. Key takeaways include:
+This evaluation assessed ten pre-trained NLP models for academic title generation from abstracts. Key takeaways include:
 
-- Models fine-tuned specifically for title generation (e.g., `fabiochiu/t5-base-medium-title-generation`, `deep-learning-analytics/automatic-title-generation`) consistently outperformed more general-purpose models.
+- Models fine-tuned specifically for title generation (e.g., `deepseek-ai/DeepSeek-V3-0324`, `deep-learning-analytics/automatic-title-generation`, `fabiochiu/t5-base-medium-title-generation`) consistently outperformed more general-purpose models.
 - Instruction-tuned models like `google/flan-t5-base` displayed excellent adaptability and language generation capabilities.
 - Extractive models and those without task-specific fine-tuning underperformed in generating concise, structured titles.
-
-**Final Insight**:  
-Instruction-tuning and fine-grained task specialization significantly enhance a model’s effectiveness for automated academic title generation. Future work should explore multilingual adaptation, automated scoring metrics, and integration into academic publishing pipelines.
