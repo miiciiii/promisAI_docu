@@ -4,7 +4,7 @@
 
 ## [Introduction]
 
-The rise of Natural Language Processing (NLP) in academic and publishing workflows has amplified the importance of automated content summarization and generation. Among these tasks, title generation is critical—it enhances a document's visibility, relevance, and engagement in both digital libraries and academic indexing platforms.
+The rise of Natural Language Processing (NLP) in academic and publishing workflows has amplified the importance of automated content summarization and generation. Among these tasks, title generation is critical, it enhances a document's visibility, relevance, and engagement in both digital libraries and academic indexing platforms.
 
 This project evaluates the effectiveness of various state-of-the-art pre-trained language models in generating concise, fluent, and semantically accurate titles from academic abstracts. The primary goal is to determine the most suitable models for integration into the PROMIS (Project Monitoring and Information System) platform, which supports research proposal submissions across government institutions.
 
@@ -29,7 +29,7 @@ A standardized experimental setup was followed for consistency:
 
 ---
 
-### Tested Models
+## [Tested Models]
 
 | #  | Model Name                                                | Architecture | Source       | Generated Title                                                                                                                   |
 |----|-----------------------------------------------------------|--------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------|
@@ -46,63 +46,54 @@ A standardized experimental setup was followed for consistency:
 
 ---
 
-## [Key Findings]
-
-Following a systematic evaluation of 10 pre-trained NLP models using a consistent academic abstract prompt, several insights emerged:
-
 ### Top-Performing Models
 
-#### 1. `deepseek-ai/DeepSeek-V3-0324`
+### 1. `deepseek-ai/DeepSeek-V3-0324`
 
-- **Model Type**: Multilingual instruction-following LLM  
-- **Architecture**: DeepSeek Transformer (based on LLaMA)  
+- **Model Type**: Multilingual instruction-following Large Language Model (LLM)
+- **Architecture**: DeepSeek Transformer (based on LLaMA)
+- **Training Objective**: Pre-trained on 14.8 trillion diverse and high-quality tokens, followed by supervised fine-tuning and reinforcement learning stages to fully harness its capabilities.
 - **Strengths**:
   - Produces structured, publication-ready titles
   - Captures abstract-level intent and nuances
-  - Effective across multilingual and domain-specific content  
+  - Effective across multilingual and domain-specific content
 - **Limitations**:
-  - May occasionally overgeneralize or reinterpret details  
-- **Use Case Fit**: Excellent for academic writing support and policy-aligned research projects  
-- **Source**: [Github](https://github.com/deepseek-ai/DeepSeek-V3)
+  - May occasionally overgeneralize or reinterpret details
+- **Use Case Fit**: Excellent for academic writing support and policy-aligned research projects
+- **Source**: [GitHub](https://github.com/deepseek-ai/DeepSeek-V3)
 
 ---
 
-#### 2. `google/flan-t5-base`
+### 2. `google/flan-t5-base`
 
-- **Model Type**: Instruction-tuned sequence-to-sequence  
-- **Architecture**: T5 (Text-to-Text Transfer Transformer)  
+- **Model Type**: Instruction-tuned sequence-to-sequence model
+- **Architecture**: T5 (Text-to-Text Transfer Transformer)
+- **Training Objective**: Pre-trained on the Colossal Clean Crawled Corpus (C4) and fine-tuned on a mixture of tasks, allowing it to learn a more general-purpose representation of language.
 - **Strengths**:
   - Balanced output—semantically correct, fluent, and concise
   - Strong zero-shot capabilities
-  - Lightweight and fast for real-time use  
+  - Lightweight and fast for real-time use
 - **Limitations**:
   - Less creative than larger models
-  - May omit highly technical or policy-related terms  
-- **Use Case Fit**: Ideal for scalable deployments requiring high-quality, low-latency generation  
+  - May omit highly technical or policy-related terms
+- **Use Case Fit**: Ideal for scalable deployments requiring high-quality, low-latency generation
 - **Source**: [Hugging Face](https://huggingface.co/google/flan-t5-base)
 
 ---
 
-#### 3. `deep-learning-analytics/automatic-title-generation`
+### 3. `deep-learning-analytics/automatic-title-generation`
 
-- **Model Type**: Task-specific academic title generator  
-- **Architecture**: T5-base fine-tuned on academic corpora  
+- **Model Type**: Task-specific academic title generator
+- **Architecture**: T5-base fine-tuned on academic corpora
+- **Training Objective**: Fine-tuned specifically on pairs of research abstracts and titles, utilizing datasets from academic publications such as arXiv and PubMed.
 - **Strengths**:
   - High fidelity to research abstracts
-  - Generates concise, accurate, domain-specific titles  
+  - Generates concise, accurate, domain-specific titles
 - **Limitations**:
   - May underperform in general or creative tasks
-  - Outputs tend to be conservative in phrasing  
-- **Use Case Fit**: Best suited for journal-style titles and institutional research platforms  
+  - Outputs tend to be conservative in phrasing
+- **Use Case Fit**: Best suited for journal-style titles and institutional research platforms
 - **Source**: [Hugging Face](https://huggingface.co/deep-learning-analytics/automatic-title-generation)
-
----
-
-### Highlight Examples
-
-- **Model 1**: *AI in Higher Education: Transforming Teaching, Learning, and Institutional Challenges* — well-rounded and context-aware  
-- **Model 8**: *Artificial Intelligence in Higher Education: Benefits and Challenges* — clear and structured  
-- **Model 3**: *AI-Powered Teaching and Learning: A Mixed-Method Survey* — aligned with academic conventions  
 
 ---
 
@@ -114,6 +105,17 @@ Following a systematic evaluation of 10 pre-trained NLP models using a consisten
 
 ---
 
+## [Key Findings]
+
+Following a systematic evaluation of 10 pre-trained NLP models using a consistent academic abstract prompt, several insights emerged:
+
+- **Performance Variability**: Models exhibited varying degrees of effectiveness in generating coherent and contextually relevant titles, with some excelling in specific domains.
+- **Domain Adaptability**: Certain models demonstrated better adaptability to specialized fields, producing more accurate and domain-specific titles.
+- **Prompt Sensitivity**: :The structure and wording of the input prompt significantly influenced the quality of the generated titles, highlighting the importance of prompt engineering.
+- **Multilingual Capabilities**: Models like deepseek-ai/DeepSeek-V3-0324 showcased strong multilingual support, effectively handling abstracts in various languages.
+- **Computational Efficiency**: Lighter models such as google/flan-t5-base offered faster response times, making them suitable for real-time applications.​
+
+---
 ## [Integration of Chosen Model into PROMIS]
 
 As part of PROMIS enhancements, the platform will incorporate an automated title suggestion feature. The top models—`deepseek-ai/DeepSeek-V3-0324`, `google/flan-t5-base`, and `deep-learning-analytics/automatic-title-generation`—were selected as base models due to their consistent, high-quality performance.
@@ -133,7 +135,7 @@ To bridge this gap, transfer learning will be applied by fine-tuning selected mo
 ### Integration Plan
 
 1. **Base Model Selection**  
-   - Selected: `DeepSeek-V3`, `FLAN-T5`, and `T5-Academic`
+   - Selected: `DeepSeek-V3`, `FLAN-T5`, and `T5-Base`
    - Basis: Accuracy, domain sensitivity, and instruction-following strength
 
 2. **Dataset Preparation**  
