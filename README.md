@@ -132,17 +132,84 @@ To bridge this gap, transfer learning will be applied by fine-tuning selected mo
 
 ---
 
-### Integration Plan
+## Integration Plan
 
-1. **Base Model Selection**  
-   - Selected: `DeepSeek-V3`, `FLAN-T5`, and `T5-Base`
-   - Basis: Accuracy, domain sensitivity, and instruction-following strength
+### 1. **Base Model Selection**
 
-2. **Dataset Preparation**  
-   - Source: PROMIS historical project submissions  
-   - Format: JSON or DataFrame with fields:  
-     `Abstract`, `Title`, `SDG`, `R&D Priority Area & Program`, `Economic Agenda`  
-   - Volume: 500–2,000 labeled entries for initial transfer learning
+- **Models Chosen**: `deepseek-ai/DeepSeek-V3-0324`, `google/flan-t5-base`, and `deep-learning-analytics/automatic-title-generation`
+  
+- **Selection Criteria**:
+  - High accuracy in generating structured academic titles
+  - Sensitivity to domain-specific content
+  - Strong instruction-following capabilities
+  
+- **Rationale**: These models are pre-trained on extensive datasets and have demonstrated effectiveness in academic and multilingual contexts.​[Hugging Face](https://huggingface.co/mrm8488/t5-base-finetuned-qasc?utm_source=chatgpt.com)
+
+### 2. **Dataset Preparation**
+
+- **Source**: PROMIS historical project submissions
+  
+- **Format**: JSON or DataFrame with the following fields:
+  - `Abstract`: Research abstract text
+  - `Title`: Corresponding academic title
+  - `SDG`: Sustainable Development Goal(s) associated
+  - `R&D Priority Area & Program`: Relevant research and development focus areas
+  - `Economic Agenda`: Economic objectives addressed
+  
+- **Volume**: 500–2,000 labeled entries for initial fine-tuning
+  
+- **Preprocessing**:
+  - Clean and tokenize text
+  - Ensure consistent formatting across fields
+  - Split dataset into training (80%), validation (10%), and test (10%) sets​[KDnuggets+3TOPBOTS+3ResearchGate+3](https://www.topbots.com/transfer-learning-in-nlp/?utm_source=chatgpt.com)[Philschmid+11Hugging Face+11ResearchGate+11](https://huggingface.co/mrm8488/t5-base-finetuned-qasc?utm_source=chatgpt.com)[Philschmid+1Learn R, Python & Data Science Online+1](https://www.philschmid.de/fine-tune-flan-t5?utm_source=chatgpt.com)
+
+### 3. **Model Fine-Tuning**
+
+#### a. **FLAN-T5 Base**
+
+- **Objective**: Adapt the model to generate academic titles from research abstracts
+  
+- **Procedure**:
+  - Load the pre-trained FLAN-T5 model and tokenizer
+  - Format input as: `{"input": "summarize: {Abstract}"}`
+  - Format output as: `{"output": "{Title}"}`
+  - Use Hugging Face's `Trainer` API for fine-tuning
+  - **Reference**: FLAN-T5 Tutorial: Guide and Fine-Tuning ​[ResearchGate+3LearnOpenCV+3ResearchGate+3](https://learnopencv.com/fine-tuning-t5/?utm_source=chatgpt.com)[arXiv+8Learn R, Python & Data Science Online+8Learn R, Python & Data Science Online+8](https://www.datacamp.com/tutorial/flan-t5-tutorial?utm_source=chatgpt.com)[Medium+1Medium+1](https://medium.com/%40anyuanay/fine-tuning-the-pre-trained-t5-small-model-in-hugging-face-for-text-summarization-3d48eb3c4360?utm_source=chatgpt.com)[Hugging Face Forums+1ResearchGate+1](https://discuss.huggingface.co/t/how-to-fine-tune-t5-base-model/8478?utm_source=chatgpt.com)[BytePlus+4Hugging Face+4KDnuggets+4](https://huggingface.co/docs/transformers/en/training?utm_source=chatgpt.com)
+
+#### b. **T5 Base**
+
+- **Objective**: Train the model to generate concise academic titles
+  
+- **Procedure**:
+  - Load the pre-trained T5 model and tokenizer
+  - Format input as: `{"input": "summarize: {Abstract}"}`
+  - Format output as: `{"output": "{Title}"}`
+  - Utilize Hugging Face's `Trainer` API for fine-tuning
+  - **Reference**: Fine-tuning T5 with custom datasets ​[arXiv+2Hugging Face+2BytePlus+2](https://huggingface.co/docs/transformers/en/model_doc/t5?utm_source=chatgpt.com)[Medium+8Hugging Face Forums+8Hugging Face+8](https://discuss.huggingface.co/t/fine-tuning-t5-with-custom-datasets/8858?utm_source=chatgpt.com)
+
+#### c. **DeepSeek-V3**
+
+- **Objective**: Fine-tune the model to generate structured titles aligned with research intent
+  
+- **Procedure**:
+  - Load the pre-trained DeepSeek-V3 model and tokenizer
+  - Format input as: `{"input": "generate title for: {Abstract}"}`
+  - Format output as: `{"output": "{Title}"}`
+  - Fine-tune using the Hugging Face `Trainer` API
+  - **Reference**: DeepSeek-V3 GitHub Repository [AI Framework+10Hugging Face Forums+10LearnOpenCV+10](https://discuss.huggingface.co/t/how-to-fine-tune-t5-base-model/8478?utm_source=chatgpt.com)
+
+### 4. **Evaluation and Validation**
+
+- **Metrics**:
+  - ROUGE Score: Measures the overlap between generated and reference titles
+  - BLEU Score: Assesses the precision of n-grams in generated titles
+  - Human Evaluation: Subjective assessment of title relevance and clarity
+  
+- **Procedure**:
+  - Evaluate models on the validation set
+  - Select the model with the highest performance metrics
+  - Conduct human evaluation to ensure quality and relevance​[Medium](https://medium.com/nlplanet/a-full-guide-to-finetuning-t5-for-text2text-and-building-a-demo-with-streamlit-c72009631887?utm_source=chatgpt.com)
+
 
 ---
 
